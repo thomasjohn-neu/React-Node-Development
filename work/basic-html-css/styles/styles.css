@@ -1,0 +1,19 @@
+footer {
+    background-color: #96c5c8;
+    color: white;
+    padding: 15px 15px;
+}
+
+header {
+    background-color: #FF8607;
+}
+
+main {
+    background-color: bisque;
+    padding: 15px 15px;
+}
+
+.page-heading {
+    display: flex;
+    color:#ffffff;
+}
