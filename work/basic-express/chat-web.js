@@ -19,8 +19,8 @@ const chatWeb = {
   },
 
   getMessageList: function(chat) {    
-    chatList = '';
-    for(i=0; i < chat.messages.length; i++){
+    let chatList = '';
+    for(let i=0; i < chat.messages.length; i++){
       chatList = chatList + `<li class="order">
                               <div class="message">
                                 <div class="sender-info">
