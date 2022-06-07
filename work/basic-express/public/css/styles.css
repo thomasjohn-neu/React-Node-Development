@@ -15,18 +15,14 @@ html, body {
     "users messages"
     "outgoing outgoing"
   ;
-  /* grid-template-columns: auto 1fr; */
   grid-template-rows: 1fr auto;
-
   height: 100%;
 }
 
 .users { 
   grid-area: users;
-
   padding: 0;
   margin: 0;
-
   background-color: #ffffff;
   border: 2px solid #ffffff;
   border-radius: 25px;
@@ -34,18 +30,14 @@ html, body {
   margin-left: 30px;
   margin-top: 30px;
   overflow-y: auto;
-
   list-style-type: none;
 }
 
 .messages { 
   grid-area: messages;
-
   padding: 0;
   margin: 0;
-
   overflow-y: auto;
-
   list-style-type: none;
   background-color: #ffffff;
   border: 2px solid #ffffff;
@@ -77,16 +69,13 @@ html, body {
 .sender-info { 
   margin-top: 20px;
   display: flex;
-
   width: 10rem;
 }
 
 .message-text { 
-
   width: 100%;
   margin: 0;
   margin-top: auto;
-
   color: white;
   background-color: rgb(59, 59, 219);
   align-self: flex-start;
@@ -108,9 +97,6 @@ html, body {
 
 .outgoing { 
   grid-area: outgoing;
-
-  /* margin: 2rem; */
-
   background-color: #ffffff;
   border: 2px solid #ffffff;
   border-radius: 25px;
