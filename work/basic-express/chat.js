@@ -1,6 +1,7 @@
 const users = { // Yes, an object!  Keep it as one
   "Amit": "Amit", // The keys let you check to see if the user is logged in
   "Bao": "Bao",  // the values don't really matter, here we reuse the username, but it could be `true`
+  "Jack": "Jack",
 };
 
 const messages = [
