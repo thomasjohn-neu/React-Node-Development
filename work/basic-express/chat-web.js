@@ -1,11 +1,11 @@
 const chatWeb = {
   chatPage: function(chat) {
-    // Fill in/modify anything below!
     return `
       <!doctype html>
       <html>
         <head>
           <title>Chat</title>
+          <link rel="stylesheet" href="/css/styles.css">
         </head>
         <body>
           <div id="chat-app">
@@ -18,26 +18,43 @@ const chatWeb = {
   `;
   },
 
-  getMessageList: function(chat) {
-    return `<ol class="messages">` +
-      // Fill in
-      // Generate the HTML for the list of messages
-      `</ol>`;
+  getMessageList: function(chat) {    
+    let chatList = '';
+    for(let i=0; i < chat.messages.length; i++){
+      chatList = chatList + `<li class="order">
+                              <div class="message">
+                                <div class="sender-info">
+                                  <img class="avatar" alt="avatar" src="images/avatar-${chat.messages[i].sender}.jpg"/>
+                                    <span class="username-chat">${chat.messages[i].sender}</span>
+                                </div>
+                                <p class="message-text">${chat.messages[i].text}</p>
+                              </div>
+                            </li>`;
+    }
+    return `<ol class="messages">` + chatList + `</ol>`;
   },
   getUserList: function(chat) {
     return `<ul class="users">` +
     Object.values(chat.users).map( user => `
       <li>
         <div class="user">
-          <span class="username">${user}</span>
+          <div class="sender-info">
+            <img class="avatar" alt="avatar" src="images/avatar-${user}.jpg"/>
+              <span class="username-chat">${user}</span>
+          </div>
         </div>
       </li>
     `).join('') +
     `</ul>`;
   },
   getOutgoing: function() {
-    // Fill in
-    // Generate the HTML for a form to send a message
-  }
+    return `<div class="outgoing">
+              <form action="/chat" method="POST">
+                <input class="to-send" name="text" value="" placeholder="Enter message to send"/>
+                <input type="hidden" name="username" value="Jack">
+                <button type="submit">Send</button>
+              </form>
+            </div>`;
+  },
 };
 module.exports = chatWeb;
