@@ -1,0 +1,166 @@
+.background{
+    position: relative;
+    background-color: #06121c;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-bottom: 69px;
+    background-image: url(../images/home.jpeg);   
+    padding: 0px;
+    margin: 0px;
+}
+.login{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 53px 30px 60px;
+    box-shadow: inset 0px 0px 10px 7px #3ea2b2;
+    border-radius: 30px;
+    position: relative;
+    bottom: -120px;
+    z-index: 9;
+    overflow: hidden;
+    width: 50%;
+    left: 25%;
+    color: #fff;
+    text-align: center;
+}
+.to-send{
+    width: 55%;
+    height: 60px;
+    background: none;
+    border: 0px;
+    border-radius: 50px;
+    box-shadow: inset 0px 0px 10px 7px #3f90a1;
+    border: 2px solid #3f90a1;
+    padding: 0px 160px 0px 30px;
+    font-size: 18px;
+    color: #fff;
+}
+.login-btn{
+    font-weight: 600;
+    font-size: 20px;
+    padding: 12px 35px;
+    border-radius: 43px;
+    box-shadow: inset 0px 0px 10px 7px #3f90a1;
+    transition: all 0.3s ease-in;
+    display: inline-block;
+    border-color: #3f90a1;
+    margin: 14px 2px 14px 10px;
+}
+.heading{
+    text-transform: uppercase;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    margin: 10px 0px 30px 0px;
+    text-align: center;
+    color: white;
+}
+.no-list{
+    list-style-type: none;
+    border: 1px solid #438396;
+    border-radius: 10px;
+    padding: 4px;
+    background: #44809394;
+    width: 90%;
+    height: 18px;
+}
+.login-msg{
+    color:#fff;
+    float: left;
+}
+.list-border{
+    box-shadow: inset 0px 0px 10px 7px #3f90a1;
+    border-radius: 30px;
+    position: relative;
+    margin: 10px 40px;
+}
+ul{
+    column-count: 6;
+    padding: 5px 28px;
+    color:white;
+}
+.grey-border{
+    color: #000!important;
+    background-color: #f1f1f1!important;
+    border-radius: 25px;
+    width: 50%;
+    float: right;
+}
+.grey{
+    color: #000!important;
+    background-color: #888686!important;
+    height:15px;
+    width:15%;
+    border-radius: 25px;
+}
+
+.green{
+    color: #000!important;
+    background-color: #12ef07!important;
+    height:15px;
+    border-radius: 25px;
+}
+
+.red{
+    color: #000!important;
+    background-color: #ef0707!important;
+    height:15px;
+    width:15%;
+    border-radius: 25px;
+}
+
+.heading-welcome{
+    width:100%;
+    background-color: #ea4b7561;
+    position:absolute;
+}
+.logout{
+    float: right;
+}
+.login-head{
+    width: 85%;
+    margin-left: 10px;
+    text-transform: capitalize;
+    margin-top: 28px;
+}
+.new-game{
+    float: right;
+    margin-top: -80px;
+}
+.word-guess{
+    padding-top: 80px;
+    margin: 0px 40px;
+}
+.sub-word{
+    width: 34%;
+    float: left;
+}
+.icon{
+    width:16%;
+}
+::placeholder {
+    color: white;
+    opacity: 1;
+}
+.search{
+    margin-top: 12px;
+}
+.greeting{
+    float:right;
+}
+.total{
+    text-transform: uppercase;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+}
+.score{
+    text-transform: uppercase;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    margin-left: 50px;
+}
