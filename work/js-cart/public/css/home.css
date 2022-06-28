@@ -1,0 +1,89 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 310px;
+    float: left;
+    text-align: center;
+    font-family: arial;
+    margin: 10px 20px;
+    border-radius: 25px;
+  }
+  .image{
+    margin-top: 40px;
+  }
+  .price {
+    color: grey;
+    font-size: 22px;
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 20px;
+    color: white;
+    background-color: #3A3F67;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+
+  .button-cart{
+    border: none;
+    outline: 0;
+    padding: 16px;
+    color: white;
+    background-color: #3A3F67;
+    text-align: center;
+    cursor: pointer;
+    width: 180px;
+    font-size: 18px;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .products{
+    margin-left: 220px;
+  }
+
+  .heading{
+    text-align: center;
+    width: 84%;
+    float: left;
+    text-align:center
+  }
+  .checkout{
+      width:100%;
+      float:left;
+  }
+
+  .bag-head{
+    float: right;
+    margin-right: 30px;
+  }
+
+  .image-checkout{
+      width:30%;
+      float:left;
+  }
+
+  .description{
+    width: 70%;
+    float: left;
+  }
+
+  .checkout{
+    box-shadow: 0 4px 8px 0 rgb(149 144 144);
+    width: 95%;
+    float: left;
+    font-family: arial;
+    margin: 10px 0px;
+    border-radius: 25px;
+    padding: 30px 27px;
+  }
