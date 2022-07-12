@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Chat</title>
+  <link rel="stylesheet" href="css/chat.css"/>
+  <link href='https://css.gg/spinner-two-alt.css' rel='stylesheet'>
+  <script defer src="bundle.js"></script>  
+</head>
+<body>
+  <main class="">
+    <div class="status"></div>
+    <div class="login">
+      <form class="login-form" action="#">
+        <label>
+          <span>Username:</span>
+        <input class="login__username username" placeholder="Enter Username">
+        </label>
+        <button class="button" type="button">Login</button>
+      </form>
+    </div>
+    <div class="content">
+      <div class="controls">
+        <div class="chat-heading">CHAT APPLICATION</div>
+        <button class="button-chat refresh">Refresh</button>
+        <button class="button-chat logout">Logout</button>
+        <div class="loader">
+        </div>
+      </div>
+      <ul class="todos"></ul>
+      <ul class="users"></ul>
+      <form class="chat-add" action="#">
+        <input class="to-add username-chat">
+        <button type="button" class="button add">Add</button>
+      </form>
+     
+    </div>
+  </main>
+</body>
+</html>
