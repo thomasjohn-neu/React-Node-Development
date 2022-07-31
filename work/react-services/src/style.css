@@ -1,0 +1,98 @@
+body{
+    background-color: rgb(162, 159, 159);
+}
+.login-container,
+.message-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-form, .update-form {
+    width: 55%;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+}
+
+.login-username,
+.update-title {
+    font-size: 32px;
+    position: initial;
+    top: -20px;
+    left: 40%;
+    padding: 0 12px;
+    color: #f8e3e3;
+}
+.update-title {
+  left: 28%;
+}
+.login-form form,
+.update-form form {
+  padding: 32px 0;
+}
+.input-field {
+  position: relative;
+  width: 100%;
+}
+.username,
+.message {
+  font-size: 18px;
+  padding: 16px 12px;
+  width: 100%;
+  border-radius: 13px;
+  border-color: #fff;
+}
+
+.login-btn ,
+.update-button {
+  font-size: 22px;
+    padding: 12px 24px;
+    background-color: rgb(94, 94, 200);
+    color: #ffffff;
+    margin-top: 24px;
+    border-radius: 12px;
+    width: 104%;
+    border: 1px solid rgb(94, 94, 200);
+}
+.user-message .message-content {
+  font-size: 22px;
+}
+
+.logout-btn {
+    background-color: #5e5ec8;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    padding: 9px 18px;
+    width: 16%;
+}
+
+.error-msg {
+  color: red;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.user-navbar {
+    height: 15vh;
+    padding: 12px 0px;
+    width: 100%;
+}
+
+.user-navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.new-message{
+  color: #2d982d;
+  font-size: large;
+  width: 600px;
+  word-wrap: break-word;
+  border: 2px solid green;
+  padding: 25px;
+}
