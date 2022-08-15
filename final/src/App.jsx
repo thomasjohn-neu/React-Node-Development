@@ -20,6 +20,7 @@ import {
   fetchDeleteTransaction,
   fetchAddTodo,
   fetchAddTransaction,
+  fetchWalletSummary,
 } from './services';
 
 import LoginForm from './LoginForm';
@@ -53,6 +54,7 @@ function App() {
       dispatch({ type: ACTIONS.LOG_IN, username });
       dispatch({ type: ACTIONS.REPLACE_TODOS, todos: fetchedData.tasks });
       dispatch({ type: ACTIONS.REPLACE_TRANSACTIONS, transactions: fetchedData.transactions})
+      dispatch({ type: ACTIONS.START_LOADING_WALLET_SUMMARY, walletSummary: fetchedData.walletSummary });
     })
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
@@ -79,6 +81,14 @@ function App() {
     fetchTransactions()
     .then( transactions => {
       dispatch({ type: ACTIONS.REPLACE_TRANSACTIONS, transactions });
+    })
+    .catch( err => {
+      dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
+    });
+
+    fetchWalletSummary().
+    then( walletSummary => {
+      dispatch({ type: ACTIONS.START_LOADING_WALLET_SUMMARY, walletSummary });
     })
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
@@ -123,6 +133,13 @@ function App() {
       .catch( err => {
         dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
       });
+    fetchWalletSummary().
+      then( walletSummary => {
+        dispatch({ type: ACTIONS.START_LOADING_WALLET_SUMMARY, walletSummary });
+      })
+      .catch( err => {
+        dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
+      });
   }
 
   function onToggleTodo(id) {
@@ -155,6 +172,15 @@ function App() {
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
+
+    fetchWalletSummary().
+    then( walletSummary => {
+      dispatch({ type: ACTIONS.START_LOADING_WALLET_SUMMARY, walletSummary });
+    })
+    .catch( err => {
+      dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
+    });
+    
   }
 
   function onAddTaskForm(){
@@ -179,6 +205,7 @@ function App() {
     })
     .then( todos => {
       dispatch({ type: ACTIONS.REPLACE_TODOS, todos});
+      onRefresh();
     })
     .catch( err => {
       if( err?.error === CLIENT.NO_SESSION ) { // expected "error"
@@ -189,6 +216,8 @@ function App() {
       // For unexpected errors, report them
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
+
+
   }
 
   // Here we use a useEffect to perform the initial loading
@@ -209,7 +238,7 @@ function App() {
         { state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
           <div className="content">
             <p>Hello, {state.username}</p>
-            <Controls onLogout={onLogout} onRefresh={onRefresh} onAddTaskForm={onAddTaskForm} enableAddTaskForm={state.enableAddTaskForm}/>
+            <Controls onLogout={onLogout} onRefresh={onRefresh} onAddTaskForm={onAddTaskForm} enableAddTaskForm={state.enableAddTaskForm} onAddTransactionForm={onAddTransactionForm} enableAddTransactionForm={state.enableAddTransactionForm}/>
             <Todos
               isTodoPending={state.isTodoPending}
               todos={state.todos}
@@ -223,9 +252,9 @@ function App() {
               transactions={state.transactions}
               lastAddedTransactionId={state.lastAddedTransactionId}
               onDeleteTransaction={onDeleteTransaction}
+              walletSummary={state.walletSummary}
             />
-            <AddTransactionForm onAddTransaction={onAddTransaction}/> 
-            {state.enableAddTransactionForm && <AddTransactionForm onAddTransaction={onAddTransaction}/>}
+              {state.enableAddTransactionForm && <AddTransactionForm onAddTransaction={onAddTransaction}/>}
           </div>
         )}
 

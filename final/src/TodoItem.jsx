@@ -24,6 +24,7 @@ function TodoItem({
           className={`todo__toggle todo__text ${ isDoneClass } ${isAddedClass}`}
         >
           {todo.task}
+          {new Date(todo.dateTime).toDateString()}
         </span>
       </label>
       <button

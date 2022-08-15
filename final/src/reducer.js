@@ -16,6 +16,7 @@ export const initialState = {
   lastAddedTranasactionId: '',
   enableAddTaskForm: false,
   enableAddTransactionForm: false,
+  walletSummary: {},
 };
 
 function reducer(state, action) {
@@ -132,8 +133,15 @@ function reducer(state, action) {
         ...state,
         transactions: {
           ...state.transactions,
-          [action.transaction.id]: action.transaction,
+          [action.item.id]: action.item,
         },
+      };
+
+    case ACTIONS.START_LOADING_WALLET_SUMMARY:
+      return {
+        ...state,
+        error: '',
+        walletSummary: action.walletSummary, 
       };
 
     default:

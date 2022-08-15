@@ -9,22 +9,15 @@ function WalletItem({
   return (
     <>
       <label>
-        <input
-          className="todo__toggle"
-          data-id={transaction.id}
-          type="checkbox"
-          checked={transaction.done}
-          onChange={ (e) => {
-            const id = e.target.dataset.id;
-            // onToggleTodo(id);
-          }}
-        />
         <span
           data-id={transaction.id}
           className={`todo__toggle todo__text ${ isDoneClass } ${isAddedClass}`}
         >
-          {transaction.description}
+          <h3>{transaction.description}</h3>
         </span>
+
+        <span>{new Date(transaction.dateTime).toDateString()}</span>
+        <span><h4>{transaction.amount}</h4></span>
       </label>
       <button
         data-id={transaction.id}

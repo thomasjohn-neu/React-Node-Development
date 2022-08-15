@@ -1,3 +1,4 @@
+import { isCompositeComponentWithType } from 'react-dom/test-utils';
 import Loading from './Loading';
 import WalletItem from './WalletItem';
 
@@ -6,6 +7,7 @@ function Wallet({
   isTransactionPending,
   lastAddedTransactionId,
   onDeleteTransaction,
+  walletSummary,
   // onToggleTodo,
 }) {
   // All this code before the return is to make the return easier to skim
@@ -26,9 +28,13 @@ function Wallet({
 
   // The `Object.values(todos).map()` below returns
   // an array of JSX elements
+
+  console.log(transactions);
+
   return (
     <div className="content">
       <h2>My Wallet</h2>
+      <h3>Wallet Balance: {walletSummary.balance}</h3>
       { show === SHOW.PENDING && <Loading className="tranasactions__waiting">Loading Transactions...</Loading> }
       { show === SHOW.EMPTY && (
         <p>No Transactions yet, add one!</p>
@@ -40,7 +46,7 @@ function Wallet({
               <WalletItem
                 transaction={transaction}
                 isLastAdded={lastAddedTransactionId===transaction.id}
-                onDeleteTodo={onDeleteTransaction}
+                onDeleteTransaction={onDeleteTransaction}
                 // onToggleTodo={onToggleTodo}
               />
             </li>

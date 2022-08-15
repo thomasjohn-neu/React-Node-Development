@@ -59,6 +59,13 @@ function makeTransactionList() {
     transactions[id].description = transaction.description || transactions[id].description;
   };
 
+  transactionList.getWalletSummary = function getWalletSummary() {
+    let balance = 0;
+    for (const transaction in transactions) {
+      balance = parseFloat(balance) + parseFloat(transactions[transaction].amount);
+    }
+    return {"balance": balance}
+  };
 
   transactionList.deleteTransaction = function deleteTransaction(id) {
     delete transactions[id];

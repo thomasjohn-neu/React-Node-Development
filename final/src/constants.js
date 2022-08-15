@@ -56,4 +56,5 @@ export const ACTIONS = {
   ADD_TODO: 'addTodo',
   DELETE_TRANSACTION: 'deleteTransaction',
   ADD_TRANSACTION: 'addTransaction',
+  START_LOADING_WALLET_SUMMARY: 'startLoadingWalletSummary'
 };

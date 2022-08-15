@@ -60,7 +60,8 @@ app.post('/api/session', (req, res) => {
 
   res.cookie('sid', sid);
   res.json({tasks: users.getUserData(username).tasks.getTasks(), 
-            transactions: users.getUserData(username).transactions.getTransactions()});
+            transactions: users.getUserData(username).transactions.getTransactions(),
+            "walletSummary": users.getUserData(username).transactions.getWalletSummary()});
 });
 
 app.delete('/api/session', (req, res) => {
@@ -284,6 +285,16 @@ app.delete('/api/transactions/:id', (req, res) => {
     transactionList.deleteTransaction(id);
   }
   res.json({ message: exists ? `transaction ${id} deleted` : `transaction ${id} did not exist` });
+});
+
+app.get('/api/wallet', (req, res) => {
+  const sid = req.cookies.sid;
+  const username = sid ? sessions.getSessionUser(sid) : '';
+  if(!sid || !users.isValid(username)) {
+    res.status(401).json({ error: 'auth-missing' });
+    return;
+  }
+  res.json(users.getUserData(username).transactions.getWalletSummary());
 });
 
 
