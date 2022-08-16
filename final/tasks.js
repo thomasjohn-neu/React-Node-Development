@@ -43,7 +43,6 @@ function makeTaskList() {
       done: false,
     };
 
-    console.log(tasks[id], "   after addition");
     return id;
   };
 

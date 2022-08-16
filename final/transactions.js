@@ -45,8 +45,6 @@ function makeTransactionList() {
       done: false,
       amount: transaction.amount,
     };
-
-    console.log(transactions[id], "   after addition");
     return id;
   };
 

@@ -27,8 +27,6 @@ function Wallet({
     show = SHOW.TRANSACTIONS;
   }
 
-  console.log(transactions);
-
   return (
     <div className="content align_right">
       <h2 className='heading_wallet'>My Wallet</h2>
