@@ -17,6 +17,7 @@ export const initialState = {
   enableAddTaskForm: false,
   enableAddTransactionForm: false,
   walletSummary: {},
+  quotes: {"quote":"Life is not measured by the number of breaths we take, but by the moments that take our breath away.","author":"Maya Angelou"}
 };
 
 function reducer(state, action) {
@@ -35,6 +36,13 @@ function reducer(state, action) {
         ...state,
         error: '',
         isTodoPending: true, // Perhaps make this a "status" value like login?
+      };
+    
+    case ACTIONS.START_FETCHING_QUOTES:
+      return {
+        ...state,
+        error: '',
+        quotes: action.quotes, // Perhaps make this a "status" value like login?
       };
 
     case ACTIONS.START_LOADING_TRANSACTIONS:

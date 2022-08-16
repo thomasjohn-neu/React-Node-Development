@@ -17,17 +17,17 @@ function WalletItem({
         </span>
 
         <span>{new Date(transaction.dateTime).toDateString()}</span>
-        <span><h4>{transaction.amount}</h4></span>
+        <span><h4>{transaction.amount}$</h4></span>
       </label>
       <button
         data-id={transaction.id}
-        className="transaction__delete"
+        className="transaction__delete button_delete"
         onClick={ (e) => {
           const id = e.target.dataset.id;
           onDeleteTransaction(id);
         }}
       >
-        &#10060;
+        Delete
       </button>
     </>
   );

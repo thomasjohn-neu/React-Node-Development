@@ -9,33 +9,24 @@ function TodoItem({
   return (
     <>
       <label>
-        <input
-          className="todo__toggle"
-          data-id={todo.id}
-          type="checkbox"
-          checked={todo.done}
-          onChange={ (e) => {
-            const id = e.target.dataset.id;
-            onToggleTodo(id);
-          }}
-        />
-        <span
+       
+        <div
           data-id={todo.id}
           className={`todo__toggle todo__text ${ isDoneClass } ${isAddedClass}`}
         >
-          {todo.task}
-          {new Date(todo.dateTime).toDateString()}
-        </span>
+          <div className="align_task"><h3>{todo.task}</h3></div>
+          <div className="align_date">{new Date(todo.dateTime).toDateString()} </div>
+        </div>
       </label>
       <button
         data-id={todo.id}
-        className="todo__delete"
+        className="todo__delete button_delete"
         onClick={ (e) => {
           const id = e.target.dataset.id;
           onDeleteTodo(id);
         }}
       >
-        &#10060;
+        Delete
       </button>
     </>
   );

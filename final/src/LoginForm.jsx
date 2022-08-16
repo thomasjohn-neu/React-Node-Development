@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import book from './book.png'
 
 // The "onLogin" below is not an automatic event
 // such events only happen on JSX representing native HTML elements
@@ -23,15 +24,26 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-      <div className="login">
-        <form className="login__form" action="#/login" onSubmit={onSubmit}>
-          <label>
-            <span>Username:</span>
-            <input className="login__username" value={username} onChange={onChange}/>
-          </label>
-          <button className="login__button" type="submit">Login</button>
-        </form>
-      </div>
+    <div>
+        <div className='left__banner'>
+            <img className='img_align' src={book}></img>
+        </div>
+        <div className='right__banner'>
+          <div className="login">
+          <h1 className="title">CHRONICLES</h1>
+            <h2 className='heading'>Login</h2>
+            <form className="login__form" action="#/login" onSubmit={onSubmit}>
+              <label>
+                <span>Username:</span>
+              </label><br/>
+              <input className="login__username" value={username} onChange={onChange}/><br/>
+              <button className="login__button" type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+    </div>
+   
+      
   );
 
 }

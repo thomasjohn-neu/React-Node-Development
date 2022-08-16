@@ -214,3 +214,16 @@ export function fetchWalletSummary() {
   });
 }
 
+export function fetchQuotes() {
+  return fetch('/api/quotes')
+  .catch( () => Promise.reject({ error: 'networkError' }) )
+  .then( response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return response.json()
+    .catch( error => Promise.reject({ error }) )
+    .then( err => Promise.reject(err) );
+  });
+}
+

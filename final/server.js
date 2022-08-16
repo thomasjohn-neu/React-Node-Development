@@ -10,6 +10,7 @@ const tasks = require('./tasks');
 const transactions = require('./transactions');
 const sessions = require('./sessions');
 const users = require('./users');
+const { quotes } = require('./quotes');
 
 app.use(cookieParser());
 app.use(express.static('./build'));
@@ -297,6 +298,15 @@ app.get('/api/wallet', (req, res) => {
   res.json(users.getUserData(username).transactions.getWalletSummary());
 });
 
+app.get('/api/quotes', (req, res) => {
+  const sid = req.cookies.sid;
+  const username = sid ? sessions.getSessionUser(sid) : '';
+  if(!sid || !users.isValid(username)) {
+    res.status(401).json({ error: 'auth-missing' });
+    return;
+  }
+  res.json(quotes.quotes[Math.floor(Math.random() * quotes.quotes.length)]);
+});
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 

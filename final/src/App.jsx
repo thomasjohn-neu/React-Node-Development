@@ -15,12 +15,12 @@ import {
   fetchTodos,
   fetchTransactions,
   fetchUpdateTodo,
-  fetchUpdateTransaction,
   fetchDeleteTodo,
   fetchDeleteTransaction,
   fetchAddTodo,
   fetchAddTransaction,
   fetchWalletSummary,
+  fetchQuotes,
 } from './services';
 
 import LoginForm from './LoginForm';
@@ -28,25 +28,10 @@ import Todos from './Todos';
 import Loading from './Loading';
 import Controls from './Controls';
 import Status from './Status';
-import AddTodoForm from './AddTodoForm';
 import Wallet from './Wallet';
-import AddTransactionForm from './AddTransactionForm';
 
 function App() {
-
-  // All our global state is from the reducer
-  // Some "local" state will remain in various components
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // We also pass "action" functions that do things and update state
-  // The top level state has a BUNCH of these
-  // We can move these elsewhere if we think it helps
-  // - to move, these would have to get dispatch somehow
-  // - such as adding dispatch to the params
-  // - or having a function that takes dispatch and returns these functions
-  // For now, recognize the benefit of keeping the JSX returned at the bottom of this component
-  // clean and readable because we have all of these state-management functions here
-
   function onLogin( username ) {
     dispatch({ type: ACTIONS.START_LOADING_TODOS });
     fetchLogin(username)
@@ -59,11 +44,12 @@ function App() {
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
+    
   }
 
   function onLogout() {
     dispatch({ type: ACTIONS.LOG_OUT });
-    fetchLogout() // We don't really care about server results
+    fetchLogout() 
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
@@ -93,25 +79,22 @@ function App() {
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
-    
-  }
 
-  function onWalletRefresh() {
-    dispatch({ type: ACTIONS.START_LOADING_TRANSACTIONS });
-    fetchTransactions()
-    .then( transactions => {
-      dispatch({ type: ACTIONS.REPLACE_TRANSACTIONS, transactions });
+    fetchQuotes()
+    .then( quotes => {
+      dispatch({ type: ACTIONS.START_FETCHING_QUOTES, quotes });
     })
     .catch( err => {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
+    
   }
 
   function onDeleteTodo(id) {
     dispatch({ type: ACTIONS.START_LOADING_TODOS });
     fetchDeleteTodo(id)
       .then( () => {
-        return fetchTodos(); // Return the promise so we can chain
+        return fetchTodos();
       })
       .then( todos => {
         dispatch({ type: ACTIONS.REPLACE_TODOS, todos });
@@ -125,7 +108,7 @@ function App() {
     dispatch({ type: ACTIONS.START_LOADING_TRANSACTIONS });
     fetchDeleteTransaction(id)
       .then( () => {
-        return fetchTransactions(); // Return the promise so we can chain
+        return fetchTransactions(); 
       })
       .then( transactions => {
         dispatch({ type: ACTIONS.REPLACE_TRANSACTIONS, transactions });
@@ -217,6 +200,22 @@ function App() {
       dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
     });
 
+    fetchQuotes()
+    .then( quotes => {
+      dispatch({ type: ACTIONS.START_FETCHING_QUOTES, quotes });
+    })
+    .catch( err => {
+      if( err?.error === CLIENT.NO_SESSION ) { // expected "error"
+        dispatch({ type: ACTIONS.LOG_OUT });
+        // Not yet logged in isn't a reported error
+        return;
+      }
+      if( err?.error === SERVER.AUTH_MISSING ) {
+        return Promise.reject({ error: CLIENT.NO_SESSION }) // Expected, not a problem
+      }
+      dispatch({ type: ACTIONS.REPORT_ERROR, error: err?.error })
+    });
+
 
   }
 
@@ -236,25 +235,33 @@ function App() {
         { state.loginStatus === LOGIN_STATUS.PENDING && <Loading className="login__waiting">Loading user...</Loading> }
         { state.loginStatus === LOGIN_STATUS.NOT_LOGGED_IN && <LoginForm onLogin={onLogin}/> }
         { state.loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
-          <div className="content">
-            <p>Hello, {state.username}</p>
+          <div className="content head_contents">
+            <div className='welcome'><span className='message'>Hello, {state.username}</span></div>
             <Controls onLogout={onLogout} onRefresh={onRefresh} onAddTaskForm={onAddTaskForm} enableAddTaskForm={state.enableAddTaskForm} onAddTransactionForm={onAddTransactionForm} enableAddTransactionForm={state.enableAddTransactionForm}/>
-            <Todos
-              isTodoPending={state.isTodoPending}
-              todos={state.todos}
-              lastAddedTodoId={state.lastAddedTodoId}
-              onDeleteTodo={onDeleteTodo}
-              onToggleTodo={onToggleTodo}
-            />
-            {state.enableAddTaskForm && <AddTodoForm onAddTodo={onAddTodo}/>}
-            <Wallet
-              isTransactionPending={state.isTransactionPending}
-              transactions={state.transactions}
-              lastAddedTransactionId={state.lastAddedTransactionId}
-              onDeleteTransaction={onDeleteTransaction}
-              walletSummary={state.walletSummary}
-            />
-              {state.enableAddTransactionForm && <AddTransactionForm onAddTransaction={onAddTransaction}/>}
+
+            {/* <div>Time and tide doesnt wait for anyone! - Buddha</div> */}
+
+            <div>
+              <Todos
+                isTodoPending={state.isTodoPending}
+                todos={state.todos}
+                lastAddedTodoId={state.lastAddedTodoId}
+                onDeleteTodo={onDeleteTodo}
+                onToggleTodo={onToggleTodo}
+                enableAddTaskForm={state.enableAddTaskForm}
+                onAddTodo={onAddTodo}
+                quotes={state.quotes}
+              />
+              <Wallet
+                isTransactionPending={state.isTransactionPending}
+                transactions={state.transactions}
+                lastAddedTransactionId={state.lastAddedTransactionId}
+                onDeleteTransaction={onDeleteTransaction}
+                walletSummary={state.walletSummary}
+                onAddTransaction={onAddTransaction}
+                enableAddTransactionForm={state.enableAddTransactionForm}
+              />
+            </div>            
           </div>
         )}
 

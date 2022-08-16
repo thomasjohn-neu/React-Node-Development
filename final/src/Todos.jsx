@@ -1,5 +1,6 @@
 import Loading from './Loading';
 import TodoItem from './TodoItem';
+import AddTodoForm from './AddTodoForm';
 
 function Todos({
   todos,
@@ -7,6 +8,9 @@ function Todos({
   lastAddedTodoId,
   onDeleteTodo,
   onToggleTodo,
+  enableAddTaskForm,
+  onAddTodo,
+  quotes,
 }) {
   // All this code before the return is to make the return easier to skim
   const SHOW = {  // a constant used only in this component
@@ -27,11 +31,13 @@ function Todos({
   // The `Object.values(todos).map()` below returns
   // an array of JSX elements
   return (
-    <div className="content">
-      <h2>My Actions</h2>
+    <div className="content align_left">
+      <h2 className='heading_action'>My Activities</h2>
+      <h5 className="total_wallet">{quotes.quote}<span className='author'>- {quotes.author}</span></h5>
+      {enableAddTaskForm && <AddTodoForm onAddTodo={onAddTodo}/>}
       { show === SHOW.PENDING && <Loading className="todos__waiting">Loading Todos...</Loading> }
       { show === SHOW.EMPTY && (
-        <p>No Todo Items yet, add one!</p>
+        <p className='color_red'>No Todo Items yet, add one!</p>
       )}
       { show === SHOW.TODOS && (
         <ul className="todos">
@@ -47,6 +53,11 @@ function Todos({
           ))}
         </ul>
       )}
+
+      <ul className="pagination w3-border xw3-round">
+        <li> ❮ &nbsp; </li>
+        <li>  &nbsp; ❯</li>
+      </ul>
     </div>
   );
 }

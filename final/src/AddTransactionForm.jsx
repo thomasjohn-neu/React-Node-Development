@@ -8,6 +8,10 @@ function AddTransactionForm({ onAddTransaction }) {
   const [ error, setError ] = useState('');
 
   function onSubmit(e) {
+    if(!date.length || !amount.length || !description.length){
+      setError("Fields are empty!")
+      return;
+    }
     e.preventDefault(); // Don't forget, confusion follows if form submits
     setDescription('');
     setDate('');
@@ -34,21 +38,38 @@ function AddTransactionForm({ onAddTransaction }) {
   }
 
   function onTypingDescription(e) {
-    setDescription(e.target.value);
+    let input = e.target.value;
+    if(!input.length){
+      setError("Description required!");
+    }
+    else{
+      setError('');
+    }   
+    setDescription(input);
   }
 
   function onTypingAmount(e) {
-    setAmount(e.target.value);
+    let input = e.target.value;
+    if(!input.length){
+      setError("Amount required!");
+    }
+    if (isNaN(input)) {
+      setError("Invalid Amount!");
+    }
+    else{
+      setError('');
+    }   
+    setAmount(input);
   }
 
   return (
     <div className="add"> 
       <form className="add__form" action="#/add" onSubmit={onSubmit}>
         <input className="add__task" value={description} placeholder="Enter Transaction Info"  onChange={onTypingDescription}/>
-        <input className="add__task" value={date} placeholder="Enter Date(MM/DD/YYYY)"  onChange={onTypingDate}/>
+        <input className="add__task" value={date} placeholder="Enter (MM/DD/YYYY)"  onChange={onTypingDate}/>
         <input className="add__task" value={amount} placeholder="Enter Amount, use(-/+) for expense and savings"  onChange={onTypingAmount}/>
-        { error && <span>{error}</span> }
-        <button type="submit" className="add__button">Add</button>
+        { error && <span className='error'>{error}</span> }
+        <button type="submit" className="add__button button_add" disabled={error}>Add</button>
       </form>
     </div>
   );

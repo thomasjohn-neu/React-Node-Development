@@ -1,6 +1,7 @@
 import { isCompositeComponentWithType } from 'react-dom/test-utils';
 import Loading from './Loading';
 import WalletItem from './WalletItem';
+import AddTransactionForm from './AddTransactionForm';
 
 function Wallet({
   transactions,
@@ -9,6 +10,8 @@ function Wallet({
   onDeleteTransaction,
   walletSummary,
   // onToggleTodo,
+  onAddTransaction,
+  enableAddTransactionForm,
 }) {
   // All this code before the return is to make the return easier to skim
   const SHOW = {  // a constant used only in this component
@@ -32,12 +35,13 @@ function Wallet({
   console.log(transactions);
 
   return (
-    <div className="content">
-      <h2>My Wallet</h2>
-      <h3>Wallet Balance: {walletSummary.balance}</h3>
+    <div className="content align_right">
+      <h2 className='heading_wallet'>My Wallet</h2>
+      <h3 className='total_wallet'>Wallet Balance: {walletSummary.balance}$</h3>
+      {enableAddTransactionForm && <AddTransactionForm onAddTransaction={onAddTransaction}/>}
       { show === SHOW.PENDING && <Loading className="tranasactions__waiting">Loading Transactions...</Loading> }
       { show === SHOW.EMPTY && (
-        <p>No Transactions yet, add one!</p>
+        <p className='error'>No Transactions yet, add one!</p>
       )}
       { show === SHOW.TRANSACTIONS && (
         <ul className="transactions">
@@ -53,6 +57,11 @@ function Wallet({
           ))}
         </ul>
       )}
+
+      <ul className="pagination_right w3-border xw3-round">
+        <li> ❮ &nbsp; </li>
+        <li>  &nbsp; ❯</li>
+      </ul> 
     </div>
   );
 }
