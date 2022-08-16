@@ -24,16 +24,6 @@ app.get('/api/session', (req, res) => {
     res.status(401).json({ error: 'auth-missing' });
     return;
   }
-  // Notice here that an existing session will just get back the username
-  // So the consumer will need to make an additional service call to get the list of todos
-  // But below performing a login (creating a session) will return the list of todos directly
-  // I have this difference because these are the sorts of quirks you can expect when you
-  // consume services, not because I advocate for this inconsistency
-  //
-  // Which way is best depends on your service
-  // - forcing extra service calls is bad
-  // - sending more data than needed is bad
-  // Your service specifics decides which is "worse"
   res.json({ username });
 });
 

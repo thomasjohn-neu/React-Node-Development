@@ -9,11 +9,9 @@ function Wallet({
   lastAddedTransactionId,
   onDeleteTransaction,
   walletSummary,
-  // onToggleTodo,
   onAddTransaction,
   enableAddTransactionForm,
 }) {
-  // All this code before the return is to make the return easier to skim
   const SHOW = {  // a constant used only in this component
     PENDING: 'pending',
     EMPTY: 'empty',
@@ -28,9 +26,6 @@ function Wallet({
   } else {
     show = SHOW.TRANSACTIONS;
   }
-
-  // The `Object.values(todos).map()` below returns
-  // an array of JSX elements
 
   console.log(transactions);
 
@@ -51,7 +46,6 @@ function Wallet({
                 transaction={transaction}
                 isLastAdded={lastAddedTransactionId===transaction.id}
                 onDeleteTransaction={onDeleteTransaction}
-                // onToggleTodo={onToggleTodo}
               />
             </li>
           ))}

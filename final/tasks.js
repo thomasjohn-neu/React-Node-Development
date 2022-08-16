@@ -11,13 +11,13 @@ function makeTaskList() {
     // if the value of id1 is "asdf", the property is "asdf", not "id1"
     [id1]: {
       id: id1,
-      task: 'Nap',
+      task: 'Cooking Biriyani',
       done: false,
       dateTime: Date.now(),
     },
     [id2]: {
       id: id2,
-      task: 'Race away for no reason',
+      task: 'Reading Quotes',
       done: true,
       dateTime: Date.now(),
     },

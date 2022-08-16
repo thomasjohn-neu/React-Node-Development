@@ -2,7 +2,6 @@ function WalletItem({
   transaction,
   isLastAdded,
   onDeleteTransaction,
-  // onToggleTodo,
 }) {
   const isDoneClass = transaction.done ? "transaction__text--complete" : "";
   const isAddedClass = isLastAdded ? "transaction__text--added" : "";

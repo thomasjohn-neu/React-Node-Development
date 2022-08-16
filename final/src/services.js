@@ -1,23 +1,3 @@
-// Each of these functions is a bit repetitive
-// We COULD write a function that they each use to reduce that
-// But
-// (1) While these services all use the same structure, not all services will
-// (2) I wanted to demonstrate what was happening rather than abstract it away
-//     so that you will be able to write a different way to handle different services
-//
-// Key lesson: These functions all handle:
-// - MAKING the service calls
-// - Passing the data
-// - Parsing the results
-//
-// But these functions DO NOT
-// - change the state
-// - change the DOM
-//
-// This makes these functions fully decoupled and reuseable
-//
-// Notice they each return a promise. This is essential.
-// It allows the caller to attach reactions in then() and catch() clauses
 export function fetchAddTodo(task) {
   return fetch('/api/tasks', {
     method: 'POST',
