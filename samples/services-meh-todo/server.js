@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 const todos = require('./todos');
 const sessions = require('./sessions');

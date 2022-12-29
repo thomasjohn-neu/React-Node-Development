@@ -39,6 +39,7 @@ function render() {
       state = _ref.state,
       add = _ref.add;
 
+  console.log(state, add);
   var html = Object.values(state.todos).map(function (todo) {
     var isDoneClass = todo.done ? "todo__text--complete" : "";
     var isAddedClass = add === todo.id ? "todo__text--added" : "";
@@ -53,9 +54,10 @@ function renderStatus(message) {
   if (!message) {
     statusEl.innerText = '';
     return;
-  }
+  } // const key = message?.error ? message.error : 'default';
 
-  var key = message !== null && message !== void 0 && message.error ? message.error : 'default';
+
+  var key = 'default';
   statusEl.innerText = _constants__WEBPACK_IMPORTED_MODULE_0__.MESSAGES[key] || _constants__WEBPACK_IMPORTED_MODULE_0__.MESSAGES["default"];
 }
 

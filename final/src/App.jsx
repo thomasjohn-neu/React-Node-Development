@@ -24,7 +24,7 @@ import {
 } from './services';
 
 import LoginForm from './LoginForm';
-import Todos from './Todos';
+import Todos from './Activities';
 import Loading from './Loading';
 import Controls from './Controls';
 import Status from './Status';
@@ -238,9 +238,6 @@ function App() {
           <div className="content head_contents">
             <div className='welcome'><span className='message'>Hello, {state.username}</span></div>
             <Controls onLogout={onLogout} onRefresh={onRefresh} onAddTaskForm={onAddTaskForm} enableAddTaskForm={state.enableAddTaskForm} onAddTransactionForm={onAddTransactionForm} enableAddTransactionForm={state.enableAddTransactionForm}/>
-
-            {/* <div>Time and tide doesnt wait for anyone! - Buddha</div> */}
-
             <div>
               <Todos
                 isTodoPending={state.isTodoPending}

@@ -1,6 +1,7 @@
 import { MESSAGES } from './constants';
 
 export function render( { state, add } = {} ) {
+  console.log(state, add);
   const html = Object.values(state.todos).map( todo => {
     const isDoneClass = todo.done ? "todo__text--complete" : "";
     const isAddedClass = add === todo.id ? "todo__text--added" : "";
@@ -40,7 +41,8 @@ export function renderStatus(message) {
     statusEl.innerText = '';
     return;
   }
-  const key = message?.error ? message.error : 'default';
+  // const key = message?.error ? message.error : 'default';
+  const key = 'default';
   statusEl.innerText = MESSAGES[key] || MESSAGES.default;
 }
 
